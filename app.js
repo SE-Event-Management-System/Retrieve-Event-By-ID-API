@@ -47,6 +47,15 @@ app.use((err, req, res, next) => {
     }
 })
 
-app.listen(config.port, async () => {
-    infoLogger(undefined, undefined, `API server has started on port ${config.port}`)
+module.exports.app = (event, context, callback) => {
+  const serverless = require('serverless-http');
+  const server = serverless(app);
+  server(event, context, callback);
+};
+
+mongoose.connect(config.dbConnectionString, {
+    ssl: true,
+    tlsCertificateKeyFile: config.dbSslCertPath,
+    authMechanism: 'MONGODB-X509',
+    authSource: '$external'
 })
