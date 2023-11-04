@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const {v4} = require('uuid')
 const routeVersioning = require('./src/index');
 const errors = require('./errors/errors');
-const { connect } = require('./utility/redis.utility');
+const { default: mongoose } = require('mongoose');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use((req, res, next) => {
@@ -59,3 +59,5 @@ mongoose.connect(config.dbConnectionString, {
     authMechanism: 'MONGODB-X509',
     authSource: '$external'
 })
+
+module.exports = app;

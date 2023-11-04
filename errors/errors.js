@@ -19,9 +19,9 @@ module.exports = {
     },
     '003': {
         code: '003',
-        message: 'Error in fetching TTL from redis',
-        displayText: 'Error in fetching TTL from redis',
-        errorType: 'T'
+        message: 'Event not found',
+        displayText: 'Event not found',
+        errorType: 'B'
     },
     '004': {
         code: '004',

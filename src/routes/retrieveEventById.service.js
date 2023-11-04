@@ -1,19 +1,48 @@
 const Event = require('../models/events');
+const errors = require('../../errors/errors');
 
-// Retrieve an event by ID
-exports.getEventById = async (eventId) => {
+module.exports = async (req, res) => {
   try {
-    return await Event.findById(eventId);
-  } catch (error) {
-    throw error;
-  }
-};
+    const eventId = req.params.id; // Get event ID from request
+    const event = await Event.findById(eventId);
 
-// Retrieve an event by title
-exports.getEventByTitle = async (eventTitle) => {
-  try {
-    return await Event.findOne({ title: eventTitle });
+    if (!event) {
+      return res.status(404).json({
+        statusCode: 1,
+        timestamp: Date.now(),
+        requestId: req.body.requestId,
+        info: {
+          code: errors['003'].code,
+          message: 'Event not found',
+          displayText: 'Event not found',
+        },
+      });
+    }
+
+    return res.status(200).json({
+      statusCode: 0,
+      timestamp: Date.now(),
+      requestId: req.body.requestId,
+      data: {
+        event: event,
+      },
+      info: {
+        code: errors['000'].code,
+        message: errors['000'].message,
+        displayText: errors['000'].displayText,
+      },
+    });
   } catch (error) {
-    throw error;
+    return res.status(500).json({
+      statusCode: 1,
+      timestamp: Date.now(),
+      requestId: req.body.requestId,
+      info: {
+        code: errors['006'].code,
+        message: error.message || errors['006'].message,
+        displayText: errors['006'].displayText,
+      },
+      error: error,
+    });
   }
 };
