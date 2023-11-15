@@ -9,11 +9,11 @@ const eventSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
+    required: false,
   },
   image: {
-    type: String,
-    required: true,
+    type: Buffer,
+    required: false,
   },
   date: {
     type: Date,
@@ -36,7 +36,6 @@ const eventSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'user',
     },
-  ],
   price: {
     type: Number,
     required: true,
