@@ -24,7 +24,13 @@ module.exports = async (req, res) => {
       timestamp: Date.now(),
       requestId: req.body.requestId,
       data: {
-        event: event,
+        title: event.title,
+        description: event.description,
+        image: event.image,
+        date: event.date,
+        location: event.location,
+        organizer: event.organizer,
+        price: event.price,
       },
       info: {
         code: errors['000'].code,
