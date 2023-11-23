@@ -1,18 +1,19 @@
+const { string } = require('joi');
 const mongoose = require('mongoose');
 
-
 const eventSchema = new mongoose.Schema({
-  id:{
-    type: Number,
-    required: true,
-  },
+  _id: mongoose.Schema.Types.ObjectId,
   title: {
     type: String,
     required: true,
   },
   description: {
     type: String,
-    required: true,
+    required: false,
+  },
+  image: {
+    type: String,
+    required: false,
   },
   date: {
     type: Date,
@@ -23,8 +24,8 @@ const eventSchema = new mongoose.Schema({
     required: true,
   },
   organizer: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
+    type: String,
+    required: true,
   },
   attendees: [
     {
@@ -35,9 +36,9 @@ const eventSchema = new mongoose.Schema({
   price: {
     type: Number,
     required: true,
-  }
+  },
 }, {
-  timestamps: true, // Automatically add 'createdAt' and 'updatedAt' fields
+  timestamps: true,
 });
 
 // Create the Event model
