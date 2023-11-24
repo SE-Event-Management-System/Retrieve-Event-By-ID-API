@@ -11,7 +11,7 @@ const { default: mongoose } = require('mongoose');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use((req, res, next) => {
     const contentType = req.get('content-type');
-    if (!contentType || contentType != 'application/json'){
+    if (req.method != 'GET' && (!contentType || contentType != 'application/json')){
         return res.status(400).json({
             statusCode: 1,
             timestamp: Date.now(),
