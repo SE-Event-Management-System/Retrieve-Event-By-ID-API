@@ -3,4 +3,4 @@
 const app = require('app');
 const serverless = require('serverless-http');
 
-module.exports.retrieveEventByID = serverless(app);
+module.exports.getEventByID = serverless(app);
