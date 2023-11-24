@@ -1,4 +1,3 @@
-const { string } = require('joi');
 const mongoose = require('mongoose');
 
 const eventSchema = new mongoose.Schema({
@@ -17,6 +16,23 @@ const eventSchema = new mongoose.Schema({
   },
   date: {
     type: Date,
+    required: true,
+  },
+  time: {
+    type: String,
+    required: true,
+  },
+  maxSeats: {
+    type: Number,
+    required: true,
+  },
+  bookedSeats: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
+  maxWaitlist: {
+    type: Number,
     required: true,
   },
   location: {
@@ -38,7 +54,7 @@ const eventSchema = new mongoose.Schema({
     required: true,
   },
 }, {
-  timestamps: true,
+  timestamps: true, // Automatically add 'createdAt' and 'updatedAt' fields
 });
 
 // Create the Event model
