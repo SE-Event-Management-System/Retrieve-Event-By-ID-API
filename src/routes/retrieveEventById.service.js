@@ -31,6 +31,8 @@ module.exports = async (req, res) => {
         time: event.time,
         maxSeats: event.maxSeats,
         bookedSeats: event.bookedSeats,
+        maxWaitlist: event.maxWaitlist,
+        currentWaitlist: event.currentWaitlist,
         location: event.location,
         organizer: event.organizer,
         price: event.price,
