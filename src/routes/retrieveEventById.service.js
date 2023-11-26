@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
         title: event.title,
         description: event.description,
         image: event.image,
-        date: event.date,
+        datetime: event.datetime,
         maxSeats: event.maxSeats,
         bookedSeats: event.bookedSeats,
         maxWaitlist: event.maxWaitlist,
