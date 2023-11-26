@@ -34,6 +34,7 @@ module.exports = async (req, res) => {
         location: event.location,
         organizer: event.organizer,
         price: event.price,
+        tags: event.tags,
       },
       info: {
         code: errors['000'].code,
