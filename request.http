@@ -1,5 +1,5 @@
 //Mention ID here
-@id = 6562e4219cc315cbe81a0ccf
+@id = 6562f2ce1170773b924e6c70
 
 GET http://localhost:6006/api/v1/event/{{id}}
 
