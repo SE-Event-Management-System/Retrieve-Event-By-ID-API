@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+require('./booking')
 
 const eventSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
@@ -22,20 +23,29 @@ const eventSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  bookedSeats: {
-    type: Number,
-    required: true,
-    default: 0,
-  },
+  bookedSeatsArray: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Booking',
+    },
+  ],
   maxWaitlist: {
     type: Number,
     required: true,
   },
-  currentWaitlist: {
-    type: Number,
-    default: 0
-  },
+  waitlistArray: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Booking',
+    },
+  ],
   location: {
+    type: String,
+    required: true,
+  },
+  lat: Number,
+  long: Number,
+  address: {
     type: String,
     required: true,
   },
@@ -43,12 +53,6 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  attendees: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'user',
-    },
-  ],
   price: {
     type: Number,
     required: true,
