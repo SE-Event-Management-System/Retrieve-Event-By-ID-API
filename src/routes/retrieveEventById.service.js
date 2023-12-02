@@ -4,7 +4,22 @@ const errors = require('../../errors/errors');
 module.exports = async (req, res) => {
   try {
     const eventId = req.params.id; // Get event ID from request
-    const event = await Event.findById(eventId);
+    const event = await Event.findById(eventId).populate([
+      {
+        path: 'bookedSeatsArray',
+        populate: {
+          path: 'user',
+          model: 'User'
+        }
+      },
+      {
+        path: 'waitlistArray',
+        populate: {
+          path: 'user',
+          model: 'User'
+        }
+      }
+    ]);
 
     if (!event) {
       return res.status(404).json({
@@ -29,10 +44,13 @@ module.exports = async (req, res) => {
         image: event.image,
         datetime: event.datetime,
         maxSeats: event.maxSeats,
-        bookedSeats: event.bookedSeats,
+        bookedSeatsArray: event.bookedSeatsArray,
         maxWaitlist: event.maxWaitlist,
-        currentWaitlist: event.currentWaitlist,
+        waitlistArray: event.waitlistArray,
         location: event.location,
+        lat: event.lat,
+        long: event.long,
+        address: event.address,
         organizer: event.organizer,
         price: event.price,
         tags: event.tags,
