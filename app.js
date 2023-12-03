@@ -9,6 +9,9 @@ const errors = require('./errors/errors');
 const { default: mongoose } = require('mongoose');
 const compression = require('compression');
 app.use(compression());
+const cors = require('cors');
+  
+app.use(cors());
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use((req, res, next) => {
