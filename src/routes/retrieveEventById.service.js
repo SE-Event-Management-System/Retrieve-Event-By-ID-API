@@ -18,6 +18,22 @@ module.exports = async (req, res) => {
           path: 'user',
           model: 'User'
         }
+      },
+      {
+        path: 'comments',
+        populate: [
+          {
+            path: 'author.id',
+            model: 'User'
+          },
+          {
+            path: 'replies',
+            populate: {
+              path: 'author.id',
+              model: 'User'
+            }
+          }
+        ]
       }
     ]);
 
@@ -54,6 +70,7 @@ module.exports = async (req, res) => {
         organizer: event.organizer,
         price: event.price,
         tags: event.tags,
+        comments: event.comments
       },
       info: {
         code: errors['000'].code,

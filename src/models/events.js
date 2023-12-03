@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 require('./booking')
+require('./comments');
 
 const eventSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
@@ -63,6 +64,12 @@ const eventSchema = new mongoose.Schema({
       required: false,
     },
   ],
+  comments:[
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Comment"
+		}
+	]
 }, {
   timestamps: true, // Automatically add 'createdAt' and 'updatedAt' fields
 });
