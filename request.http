@@ -6,4 +6,4 @@ GET http://localhost:6006/api/v1/event/{{id}}
 
 ### Get Event by ID Deployed
 
-GET https://a9kd5c8zw6.execute-api.us-east-2.amazonaws.com/api/v1/event/{{id}}
+GET http://ec2-3-134-104-92.us-east-2.compute.amazonaws.com:6006/api/v1/event/{{id}}

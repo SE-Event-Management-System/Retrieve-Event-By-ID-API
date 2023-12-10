@@ -50,6 +50,8 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  chatId: String,
+  chatAccessKey: String,
   organizer: {
     type: String,
     required: true,
