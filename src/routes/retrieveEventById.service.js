@@ -66,6 +66,8 @@ module.exports = async (req, res) => {
         location: event.location,
         lat: event.lat,
         long: event.long,
+        chatId: event.chatId,
+        chatAccessKey: event.chatAccessKey,
         address: event.address,
         organizer: event.organizer,
         price: event.price,
